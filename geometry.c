@@ -70,22 +70,32 @@ void coord_2d_midpoint(coord_2d_t* mid, const coord_2d_t* a, const coord_2d_t* b
 
 }
 
-double coord_2d_area_triangle(const const_2d_t* a, const coord_2d_t* b, const coord_2d_t* c)
+double coord_2d_area_triangle(const coord_2d_t* a, const coord_2d_t* b, const coord_2d_t* c)
 {
+    double ax, ay, bx, by, cx, cy;
     /* Input Checks */
-    if(!mid){
+    if(!c){
         DEBUG(__FILE__, __LINE__, __func__, "'mid' must not be NULL");
-        return;
+        return NAN;
     }
     if(!a){
         DEBUG(__FILE__, __LINE__, __func__, "'a' must not be NULL");
-        return;
+        return NAN;
     }
     if(!b){
         DEBUG(__FILE__, __LINE__, __func__, "'b' must not be NULL");
-        return;
+        return NAN;
     }
 
+    ax = a->x;
+    ay = a->y;
+    bx = b->x;
+    by = b->y;
+    cx = c->x;
+    cy = c->y;
+
+
     /* Maths */
-    return area = (math.abs((a->x (b->y - c->y) + b->x (c->y - a->y) + c->x (a->y - b->y))/2.0));
+    double area = (fabs((ax * (by - cy) + bx * (cy - ay) + cx * (ay - by))/2.0));
+    return area;
 } 
